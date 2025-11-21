@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservation-frontend
+  namespace: reservation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reservation-frontend
+  template:
+    metadata:
+      labels:
+        app: reservation-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: farouk/reservation-frontend:latest
+          ports:
+            - containerPort: 80

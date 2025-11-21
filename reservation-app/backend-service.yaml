@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reservation-backend
+  namespace: reservation
+spec:
+  type: ClusterIP
+  selector:
+    app: reservation-backend
+  ports:
+    - port: 8080
+      targetPort: 8080

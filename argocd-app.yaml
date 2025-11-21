@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reservation-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/farouk-alt/reservation-infra.git
+    targetRevision: main
+    path: reservation-app
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: reservation
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

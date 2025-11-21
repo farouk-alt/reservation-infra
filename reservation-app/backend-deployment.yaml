@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservation-backend
+  namespace: reservation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reservation-backend
+  template:
+    metadata:
+      labels:
+        app: reservation-backend
+    spec:
+      containers:
+        - name: backend
+          image: farouk/reservation-backend:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DATABASE_HOST
+              value: "mysql"
+            - name: DATABASE_USER
+              value: "root"
+            - name: DATABASE_PASSWORD
+              value: "password"
+            - name: DATABASE_NAME
+              value: "reservation_db"
